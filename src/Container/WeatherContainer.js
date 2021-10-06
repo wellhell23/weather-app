@@ -74,7 +74,7 @@ class WeatherContainer extends Component {
                                 date: data["dt_txt"],
                                 temp_min: data["main"]["temp_min"] - 273,
                                 temp_max: data["main"]["temp_max"] - 273,
-                                icon: data["weather"]["icon"]
+                                icon: data["weather"][0]["icon"]
                             })
                         }
                         return arr;
@@ -95,12 +95,13 @@ class WeatherContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="weatherContainer">
                 {console.log("sdfa", this.state.weatherData)}
 
-                {this.state.weatherData.length !== 0 && this.state.weatherData.map((elem, index) => (
+                <div className="weather"> {this.state.weatherData.length !== 0 && this.state.weatherData.map((elem, index) => (
                     <WeatherCard key={index} date={elem.date} minTemp={elem.temp_min} maxTemp={elem.temp_max} icon={elem.icon} />
                 ))}
+                </div>
             </div>
         )
     }

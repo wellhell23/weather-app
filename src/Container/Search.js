@@ -16,7 +16,7 @@ class Search extends Component {
     }
     render() {
         return (
-            <div className="search-btn">
+            <div className="search">
                 <input type="text" onBlur={this.blurHandler} placeholder="Search" />
                 <button onClick={this.getSearchValue}>Click me</button>
             </div>

@@ -1,0 +1,28 @@
+.cards {
+	width: 100px;
+	height: 150px;
+	background: transparent;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 0 0 10px grey;
+	margin-top: 20px;
+}
+img {
+	width: 70px;
+	height: 70px;
+}
+
+.day {
+	font-size: 20px;
+	font-weight: 600;
+}
+.temp {
+	font-weight: 600;
+}
+.temp span {
+	font-size: 0.9em;
+	color: rgb(98, 98, 98);
+}

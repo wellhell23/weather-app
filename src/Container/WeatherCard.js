@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import style from './WeatherCards.module.css';
 
 class WeatherCard extends Component {
 
@@ -8,7 +9,7 @@ class WeatherCard extends Component {
         this.state = {
 
         }
-        this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        this.days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat'];
         this.getDay = new Date(props.date).getDay();
     }
 
@@ -16,9 +17,10 @@ class WeatherCard extends Component {
 
     render() {
         return (
-            <div>
-                {<div className="day">{this.days[this.getDay]}</div>}
-                {<div className='temp'>{this.props.minTemp.toFixed(1)}       {this.props.maxTemp.toFixed(1)}</div>}
+            <div className={style.cards}>
+                <div className={style.day}>{this.days[this.getDay]}</div>
+                <img src={`http://openweathermap.org/img/w/${this.props.icon}.png`} ></img>
+                <div className={style.temp}>{this.props.minTemp.toFixed(1)}       <span>{this.props.maxTemp.toFixed(1)}</span></div>
             </div>
         )
     }
