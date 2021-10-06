@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Search from './Container/Search';
+import WeatherContainer from './Container/WeatherContainer';
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      city: ''
+    }
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  getSearchValue = (city) => {
+    console.log(city);
+    this.setState({ city: city })
+  }
+  render() {
+    return (
+      <div>
+        {console.log("city", this.state.city)}
+        <Search searchCity={this.getSearchValue} />
+        {this.state.city && <WeatherContainer city={this.state.city} />}
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
