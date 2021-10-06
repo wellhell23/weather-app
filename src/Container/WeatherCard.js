@@ -18,7 +18,7 @@ class WeatherCard extends Component {
         return (
             <div>
                 {<div className="day">{this.days[this.getDay]}</div>}
-                {<div className='temp'>{this.props.minTemp.toFixed(1)}       {this.props.maxTempto.toFixed(1)}</div>}
+                {<div className='temp'>{this.props.minTemp.toFixed(1)}       {this.props.maxTemp.toFixed(1)}</div>}
             </div>
         )
     }
