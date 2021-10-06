@@ -8,9 +8,8 @@ class WeatherCard extends Component {
         this.state = {
 
         }
-        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const day = new Date(props.date).getDay();
-
+        this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        this.getDay = new Date(props.date).getDay();
     }
 
 
@@ -18,7 +17,8 @@ class WeatherCard extends Component {
     render() {
         return (
             <div>
-                <div className="day">{this.days[this.day]}</div>
+                {<div className="day">{this.days[this.getDay]}</div>}
+                {<div className='temp'>{this.props.minTemp.toFixed(1)}       {this.props.maxTempto.toFixed(1)}</div>}
             </div>
         )
     }
