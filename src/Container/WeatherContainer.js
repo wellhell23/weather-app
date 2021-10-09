@@ -11,34 +11,38 @@ class WeatherContainer extends Component {
         }
     }
 
-    getWeatherData = (dataList) => {
-        // let arr=[];
-        return dataList.map((data, index) => {
-            if (index % 8 == 0) {
-                return {
-                    date: data["dt_txt"],
-                    temp_min: data["main"]["temp_min"] - 273,
-                    temp_max: data["main"]["temp_max"] - 273,
-                    icon: data["weather"]["icon"]
-                }
-            }
-        })
-    }
+    // getWeatherData = (dataList) => {
+    //     // let arr=[];
+    //     return dataList.map((data, index) => {
+    //         if (index % 8 == 0) {
+    //             return {
+    //                 date: data["dt_txt"],
+    //                 temp_min: data["main"]["temp_min"] - 273,
+    //                 temp_max: data["main"]["temp_max"] - 273,
+    //                 icon: data["weather"]["icon"]
+    //             }
+    //         }
+    //     })
+    // }
     componentDidMount() {
-        console.log("inside");
+        console.log("mount");
+        this.setState({
+            weatherData: ""
+        })
         axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${this.props.city}&appid=edc28bd2c0984ecd78b92a4eebf79ada`)
             .then((data) => {
                 return data.data.list;
             })
             .then(dataList => {
-                console.log(dataList)
+                // console.log(dataList)
                 return dataList.reduce((arr, data, index) => {
                     if (index % 8 === 0) {
                         arr.push({
                             date: data["dt_txt"],
                             temp_min: data["main"]["temp_min"] - 273,
                             temp_max: data["main"]["temp_max"] - 273,
-                            icon: data["weather"]["icon"]
+                            icon: data["weather"][0]["icon"]
+
                         })
                     }
                     return arr;
@@ -47,7 +51,7 @@ class WeatherContainer extends Component {
             })
             .then(data => {
                 this.setState({ city: this.props.city })
-                console.log("adf", data);
+                // console.log("adf", data);
                 this.setState({
                     weatherData: data
                 })
@@ -58,7 +62,9 @@ class WeatherContainer extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("inside");
+        // console.log("update", prevState.city, this.props.city);
+        console.log("didUpdate");
+
         if (prevState.city !== this.props.city) {
 
 
@@ -84,7 +90,8 @@ class WeatherContainer extends Component {
                 .then(data => {
                     console.log("adf", data);
                     this.setState({
-                        weatherData: data
+                        weatherData: data,
+                        city: this.props.city
                     })
                 })
                 .catch((err) => {
@@ -96,7 +103,7 @@ class WeatherContainer extends Component {
     render() {
         return (
             <div className="weatherContainer">
-                {console.log("sdfa", this.state.weatherData)}
+                {console.log("render")}
 
                 <div className="weather"> {this.state.weatherData.length !== 0 && this.state.weatherData.map((elem, index) => (
                     <WeatherCard key={index} date={elem.date} minTemp={elem.temp_min} maxTemp={elem.temp_max} icon={elem.icon} />

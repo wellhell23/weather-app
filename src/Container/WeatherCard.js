@@ -11,6 +11,7 @@ class WeatherCard extends Component {
         }
         this.days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat'];
         this.getDay = new Date(props.date).getDay();
+        console.log("Constructor");
     }
 
 
@@ -19,7 +20,7 @@ class WeatherCard extends Component {
         return (
             <div className={style.cards}>
                 <div className={style.day}>{this.days[this.getDay]}</div>
-                <img src={`http://openweathermap.org/img/w/${this.props.icon}.png`} ></img>
+                <img alt='' src={`http://openweathermap.org/img/w/${this.props.icon}.png`} ></img>
                 <div className={style.temp}>{this.props.minTemp.toFixed(1)}       <span>{this.props.maxTemp.toFixed(1)}</span></div>
             </div>
         )
